@@ -1,0 +1,65 @@
+[
+    {"date":"May, 2024",
+    "projects":[
+        {
+            "title":"Embedded System Design Embedded System Design Embedded System Design Embedded System Design Embedded System Design",
+            "topics": 30,
+            "resources": 15,
+            "status": "in-progress"
+        },
+        {
+            "title":"VLSI System Design",
+            "topics": 40,
+            "resources": 10,
+            "status": "not-started"
+        },
+        {
+            "title":"Intellectual Property Rights",
+            "topics": 20,
+            "resources": 5,
+            "status": "completed"
+        }
+    ]},
+    {"date":"June, 2024",
+    "projects":[
+        {
+            "title":"Embedded System Design",
+            "topics": 30,
+            "resources": 15,
+            "status": "in-progress"
+        },
+        {
+            "title":"VLSI System Design",
+            "topics": 40,
+            "resources": 10,
+            "status": "not-started"
+        },
+        {
+            "title":"Intellectual Property Rights",
+            "topics": 20,
+            "resources": 5,
+            "status": "completed"
+        }
+    ]},
+    {"date":"August, 2024",
+    "projects":[
+        {
+            "title":"Embedded System Design",
+            "topics": 30,
+            "resources": 15,
+            "status": "in-progress"
+        },
+        {
+            "title":"VLSI System Design",
+            "topics": 40,
+            "resources": 10,
+            "status": "not-started"
+        },
+        {
+            "title":"Intellectual Property Rights",
+            "topics": 20,
+            "resources": 5,
+            "status": "completed"
+        }
+    ]}
+]

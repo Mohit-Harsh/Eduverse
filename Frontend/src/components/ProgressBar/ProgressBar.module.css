@@ -1,0 +1,17 @@
+@keyframes progressAnimation {
+
+    from {
+
+        width: 0;
+    }
+
+    to {
+        width: auto;
+    }
+    
+}
+
+.progressThumb
+{
+    animation: progressAnimation;
+}

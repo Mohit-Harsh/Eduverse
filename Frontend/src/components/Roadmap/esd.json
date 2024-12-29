@@ -1,0 +1,40 @@
+[{
+	"Module": "EMBEDDED COMPUTING",
+	"Topics": {
+		"Hard": ["Definition of embedded system", "Embedded systems vs. general computing systems", "Formalisms for system design", "Embedded system design process"],
+		"Medium": ["History of embedded systems", "Complex systems and microprocessor", "Characteristics and quality attributes of embedded systems", "Design examples"],
+		"Easy": ["Classification", "Major application areas"]
+	}
+},
+{
+	"Module": "TYPICAL EMBEDDED SYSTEMS AND ITS APPLICATIONS",
+	"Topics": {
+		"Hard": ["Core of the Embedded System", "Memory selection for Embedded Systems", "Communication Interface: Onboard and External Communication Interfaces"],
+		"Medium": ["General Purpose and Domain Specific Processors", "ASICs", "PLDs", "Commercial Off-The-Shelf Components (COTS)", "LED interfacing", "LCD display", "Seven segment display", "DAC and ADC converters interfacing with 8051 Microcontroller"],
+		"Easy": ["Memory: ROM, RAM", "Memory according to the type of Interface", "Memory Shadowing"]
+	}
+},
+{
+	"Module": "RTOS FUNDAMENTALS AND PROGRAMMING",
+	"Topics": {
+		"Hard": ["Operating system basics", "Types of operating systems", "Hard real-time scheduling considerations", "Task communication synchronization issues", "Task synchronization techniques", "Device Drivers"],
+		"Medium": ["Tasks and task states", "Process and threads", "Multiprocessing and multitasking", "Task scheduling", "Semaphore and queues", "Saving memory and power"],
+		"Easy": ["How to choose an RTOS", "Task communication: Shared memory, message passing, remote procedure call and sockets"]
+	}
+},
+{
+	"Module": "EMBEDDED SOFTWARE DEVELOPMENT TOOLS",
+	"Topics": {
+		"Hard": ["Linker/locators for embedded software", "Getting embedded software into the target system", "Debugging techniques: Testing on host machine"],
+		"Medium": ["Host and target machines", "Using laboratory tools"],
+		"Easy": ["Example system"]
+	}
+},
+{
+	"Module": "INTRODUCTION TO ADVANCED PROCESSORS",
+	"Topics": {
+		"Hard": ["Introduction to advanced architectures: ARM and SHARC", "Processor and memory organization", "Instruction level parallelism", "Networked embedded systems", "Bus protocols", "I2C bus and CAN bus", "Internet-Enabled systems"],
+		"Medium": ["Design Example-Elevator Controller"],
+		"Easy": []
+	}
+}]
