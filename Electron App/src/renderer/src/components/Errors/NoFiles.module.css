@@ -1,0 +1,27 @@
+.empty
+{
+    fill: var(--svgFill);
+    width: 150px;
+    height: 150px;
+}
+
+.emptydiv
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.emptydiv>h3
+{
+    font-size: 20px;
+    color: var(--svgFill);
+    font-weight: 700;
+}
+.emptydiv>p
+{
+    font-size: 14px;
+    color: var(--svgFill);
+    font-weight: 400;
+}

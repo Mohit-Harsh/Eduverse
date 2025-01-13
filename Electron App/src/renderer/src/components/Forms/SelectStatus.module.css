@@ -1,0 +1,26 @@
+.btn
+{
+    border: none;
+    color: var(--text);
+    text-align: center;
+    padding: 10px 20px;
+    margin: 0px;
+    cursor: pointer;
+}
+
+.options
+{
+    border-radius: 10px;
+    background-color: transparent;
+    margin-top: 5px;
+    z-index: 2;
+    transition: all 0.3s;
+}
+
+.options>p
+{
+    padding: 10px 20px;
+    color: var(--text);
+    margin: 0px;
+    cursor: pointer;
+}

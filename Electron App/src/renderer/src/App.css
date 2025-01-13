@@ -1,0 +1,158 @@
+#root {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  [theme-mode="light"] {
+    --secondaryColor: aliceblue;
+    --accentColor:#0052B4;
+    --primaryColor:white;
+    --shadowColor: #dadada79;
+    --black: #333333;
+    --red: #EA3A77;
+    --yellow: #FFC800;
+    --green:rgb(0, 180, 0);
+    --sidebarText: #0052B4;
+    --border:lightgrey;
+    --text: #333333;
+    --sidebarButtonBackground:aliceblue;
+    --svgFill:gray;
+    --svgStroke:gray;
+    --tooltip: #0052B4;
+    --formBackground:#ffff;
+    --formBorder:gray;
+    --formInputBackground:gray;
+  
+    background-color: var(--primaryColor);
+  }
+  
+  [theme-mode="dark"] {
+    --secondaryColor:  #393E46;
+    --accentColor:aliceblue;
+    --primaryColor: #222831;
+    --shadowColor: transparent;
+    --black: gray;
+    --red: #EA3A77;
+    --yellow: #F6B17A;
+    --green:rgb(0, 180, 0);
+    --sidebarText: #222831;
+    --border:#393E46;
+    --text: aliceblue;
+    --sidebarButtonBackground:#393E46;
+    --svgFill:#dadada79;
+    --svgStroke:#dadada79;
+    --tooltip:#393E46;
+    --formBackground:#31363F;
+    --formBorder:#5f5f5f;
+    --formInputBackground:#5f5f5f;
+  
+    background-color: var(--primaryColor);
+  }
+  
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: var(--shadowColor);
+    border-radius: 10px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: var(--accentColor);
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  
+  hr
+  {
+    width: 100%;
+    border: none;
+    border-top: 1px solid var(--border);
+  }
+  
+  .mainContainer
+  {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    height: 100vh;
+  }
+  .nav
+  {
+    width: 15vw;
+  }
+  
+  .maindiv
+  {
+    width: 85vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  @media (max-width:1600px)
+  {
+    .nav
+    {
+      width: 18vw;
+    }
+    .maindiv
+    {
+      width: 82vw;
+    }
+    
+  }
+  
+  @media (max-width:1366px)
+  {
+    .nav
+    {
+      width: 20vw;
+    }
+    .maindiv
+    {
+      width: 80vw;
+    }
+   
+  }
+  @media (max-width:1279px)
+  {
+      
+  }
+  @media (max-width:1023px)
+  {
+  
+  }
+  @media (max-width:960px)
+  {
+  
+    .nav
+    {
+        display: none;
+    }
+    .maindiv
+    {
+        width: 100vw;
+    }
+      
+  }
+  @media (max-width:479px)
+  {
+     
+  }
+  @media (max-width:359px)
+  {
+  
+  }

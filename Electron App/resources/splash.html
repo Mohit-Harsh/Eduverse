@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>EduVerse</title>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  </head>
+
+  <style>
+
+    @keyframes logoAnimation {
+
+      0%{
+        transform: rotate(0deg) scale(1);
+      }
+
+      50%{
+        transform: rotate(360deg) scale(1.2);
+      }
+
+      100%{
+        transform: rotate(360deg) scale(1);
+      }
+      
+    }
+
+    #root{
+
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background-color: #222831;
+      overflow: hidden;
+    }
+
+    #root::-webkit-scrollbar
+    {
+      display: none;
+    }
+
+    #root>img
+    {
+      animation: logoAnimation 1s infinite;
+    }
+
+  </style>
+
+  <body id="root">
+    <img src="splash.png" alt="" style="width: 100px; height: 100px;">
+  </body>
+</html>

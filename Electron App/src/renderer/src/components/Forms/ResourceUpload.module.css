@@ -1,0 +1,96 @@
+.container
+{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 20vw;
+    height: fit-content;
+    top: 30%;
+    left: 45%;
+    box-sizing: border-box;
+    background-color: var(--formBackground);
+    padding: 20px 30px 50px 30px;
+    gap: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--formBorder);
+    color: var(--accentColor);
+}
+
+.container>form>input, .container>form>textarea
+{
+    box-sizing: border-box;
+    width: 100%;
+}
+.container>form>input:focus, .container>form>textarea:focus
+{
+    outline: none;
+}
+.container>form
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
+}
+
+.close
+{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.svg
+{
+    width: 24px;
+    height: 24px;
+    fill: var(--accentColor);
+    stroke: var(--primaryColor);
+}
+
+.mode
+{
+    display: flex;
+    width: 100%;
+    gap: 0px;
+    border: none;
+    background-color: transparent;
+    align-items: baseline;
+    justify-content: start;
+    padding: 0px;
+    margin-bottom: 20px;
+}
+
+.btnActive
+{
+    background-color: var(--secondaryColor);
+    border: none;
+    border-bottom: 2px solid var(--secondaryColor);
+    margin: 0px;
+    padding: 10px 20px;
+    color: var(--text);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btnInactive
+{
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid var(--secondaryColor);
+    color: var(--formBorder);
+    padding: 10px 20px;
+    margin: 0px;
+    cursor: pointer;
+    transition: all 0.3s;
+}

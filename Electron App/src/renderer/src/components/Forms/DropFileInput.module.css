@@ -1,0 +1,91 @@
+/* drop-file-input.css */
+.drop_file_input 
+{
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    border: 1px solid var(--formBorder);
+    padding: 20px 0px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    transition: opacity 0.3s;
+}
+
+.drop_file_input input {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.drop_file_input:hover,
+.drop_file_input.dragover {
+    opacity: 0.6;
+}
+
+.drop_file_input_label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--formBorder);
+    font-weight: 600;
+    padding: 10px;
+    margin:0px;
+}
+
+.drop_file_input_label svg {
+    width: 40px;
+    height: 40px;
+    fill: var(--svgFill);
+}
+
+
+.drop_file_input_label p {
+    font-weight: 500;
+}
+
+.file
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    margin: 10px 0px;
+    background-color: var(--secondaryColor);
+    width: 100%;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.file>p
+{
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.file>button
+{
+    background-color: transparent;
+    padding: 0px;
+    margin: 0px;
+    width: fit-content;
+    height: fit-content;
+    border: none;
+    cursor: pointer;
+}
+
+.file>button>svg
+{
+    width: 20px;
+    height: 20px;
+    fill: var(--accentColor);
+}

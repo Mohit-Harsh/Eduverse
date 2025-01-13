@@ -1,0 +1,27 @@
+.dropdown
+{
+    margin: 0;
+    padding: 2px 5px;
+    font-size: 14px;
+    font-weight: 200;
+    color: var(--black);
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+}
+
+.dropdown:focus
+{
+    outline: none;
+}
+
+.dropdown option
+{
+    color: var(--black);
+    background: var(--primaryColor);
+}
+
+.dropdown option:hover
+{
+    color: var(--primaryColor);
+    background: red;
+}
