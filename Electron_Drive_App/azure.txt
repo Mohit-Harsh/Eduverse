@@ -1,0 +1,178 @@
+Box 1:
+Azure virtual machines provide operation system virtualization.
+Azure Virtual Machines (VM) is one of several types of on-demand, scalable computing resources that Azure offers. Typically, you choose a VM when you need more control over the computing environment than the other choices offer.
+Box 2:
+Azure Container Instances provide portable environments for virtualized applications.
+Containers are becoming the preferred way to package, deploy, and manage cloud applications. Azure Container Instances offers the fastest and simplest way to run a container in Azure, without having to manage any virtual machines and without having to adopt a higher-level service.
+Containers offer significant startup benefits over virtual machines (VMs). Azure Container Instances can start containers in Azure in seconds, without the need to provision and manage VMs.
+Box 3:
+Azure App Service is used to build, deploy and scale web apps.
+Azure App Service is a platform-as-a-service (PaaS) offering that lets you create web and mobile apps for any platform or device and connect to data anywhere, in the cloud or on-premises. App Service includes the web and mobile capabilities that were previously delivered separately as Azure Websites and Azure Mobile
+Services.
+Box 4:
+Azure Functions provide a platform for serverless code.
+Azure Functions is a serverless compute service that lets you run event-triggered code without having to explicitly provision or manage infrastructure.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+An Azure administrator plans to run a PowerShell script that creates Azure resources.
+You need to recommend which computer configuration to use to run the script.
+Which three computers can run the script? Each correct answer presents a complete solution.
+
+NOTE: Each correct selection is worth one point.
+A. a computer that runs macOS and has PowerShell Core 6.0 installed.
+B. a computer that runs Windows 10 and has the Azure PowerShell module installed. Most Voted
+C. a computer that runs Linux and has the Azure PowerShell module installed. Most Voted
+D. a computer that runs Linux and has the Azure CLI tools installed.
+E. a computer that runs Chrome OS and uses Azure Cloud Shell. Most Voted
+ 
+Correct Answer: ABE 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+You have an Azure subscription named Subscription1. You sign in to the Azure portal and create a resource group named RG1.
+From Azure documentation, you have the following command that creates a virtual machine named VM1. az vm create --resource-group RG1 --name VM1 --image UbuntuLTS --generate-ssh-keys
+You need to create VM1 in Subscription1 by using the command.
+Solution: From the Azure portal, launch Azure Cloud Shell and select Bash. Run the command in Cloud Shell.
+Does this meet the goal?
+A. Yes Most Voted
+B. No Most Voted
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+You can use Azure Resource Manager templates to automate the creation of the Azure resources. Deploying resource through templates is known as
+'Infrastructure as code'.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+What can you use to identify underutilized or unused Azure virtual machines?
+A. Azure Advisor Most Voted
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Box: Azure Databricks -
+Azure Databricks is a fast, easy, and collaborative Apache Spark-based big data analytics service designed for data science and data engineering.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+You can install the Az PowerShell module locally on Windows, macOS, and Linux. It can also be used from a browser through Azure Cloud Shell or inside a
+Docker container.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+For Windows the Azure CLI is installed via an MSI, which gives you access to the CLI through the Windows Command Prompt (CMD) or PowerShell.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Azure Arc simplifies governance and management by delivering a consistent multi-cloud and on-premises management platform.
+Azure Arc provides a centralized, unified way to:
+Manage your entire environment together by projecting your existing non-Azure and/or on-premises resources into Azure Resource Manager.0
+Manage virtual machines, Kubernetes clusters, and databases as if they are running in Azure.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Box 1: Yes -
+Azure Monitor maximizes the availability and performance of your applications and services by delivering a comprehensive solution for collecting, analyzing, and acting on telemetry from your cloud and on-premises environments.
+
+Box 2: Yes -
+Alerts in Azure Monitor proactively notify you of critical conditions and potentially attempt to take corrective action.
+
+Box 3: Yes -
+Azure Monitor uses Target Resource, which is the scope and signals available for alerting. A target can be any Azure resource. Example targets: a virtual machine, a storage account, a virtual machine scale set, a Log Analytics workspace, or an Application Insights resource.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Your Azure environment contains multiple Azure virtual machines.
+You need to ensure that a virtual machine named VM1 is accessible from the Internet over HTTP.
+Solution: You modify an Azure Traffic Manager profile.
+A) Azure Traffic Manager is a DNS-based load balancing solution. It is not used to ensure that a virtual machine named VM1 is accessible from the Internet over
+HTTP.
+To ensure that a virtual machine named VM1 is accessible from the Internet over HTTP, you need to modify a network security group or Azure Firewall.
+In this question, we need to add a rule to a network security group or Azure Firewall to allow the connection to the virtual machine on port 80 (HTTP).
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Which service provides network traffic filtering across multiple Azure subscriptions and virtual networks?
+A. Azure Firewall
+B. an application security group
+C. Azure DDoS protection
+D. a network security group (NSG)
+ 
+Correct Answer: A 🗳️
+You can restrict traffic to multiple virtual networks in multiple subscriptions with a single Azure firewall.
+Azure Firewall is a managed, cloud-based network security service that protects your Azure Virtual Network resources. It's a fully stateful firewall as a service with built-in high availability and unrestricted cloud scalability.
+You can centrally create, enforce, and log application and network connectivity policies across subscriptions and virtual networks. Azure Firewall uses a static public IP address for your virtual network resources allowing outside firewalls to identify traffic originating from your virtual network.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Which Azure service should you use to store certificates?
+A. Azure Security Center
+B. an Azure Storage account
+C. Azure Key Vault Most Voted
+D. Azure Information Protection
+ 
+Correct Answer: C 🗳️
+Azure Key Vault is a secure store for storage various types of sensitive information including passwords and certificates.
+Azure Key Vault can be used to Securely store and tightly control access to tokens, passwords, certificates, API keys, and other secrets.
+Secrets and keys are safeguarded by Azure, using industry-standard algorithms, key lengths, and hardware security modules (HSMs). The HSMs used are
+Federal Information Processing Standards (FIPS) 140-2 Level 2 validated.
+Access to a key vault requires proper authentication and authorization before a caller (user or application) can get access. Authentication establishes the identity of the caller, while authorization determines the operations that they are allowed to perform.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Which Azure service can you use as a security information and event management (SIEM) solution?
+A. Azure Analysis Services
+B. Azure Sentinel
+C. Azure Information Protection
+D. Azure Cognitive Services
+ 
+Correct Answer: B 🗳️
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Azure Sentinel stores collected events in an Azure Storage account. (Yes)
+Azure Sentinel can remediate incidents automatically. (No)
+Azure Sentinel can collect Windows Defender Firewall logs from Azure virtual machines. (Yes)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Azure Security Center can monitor Azure resources and on-premises resources. (Yes)
+All Azure Security Center features are free. (No)
+From Azure Security Center, you can download a Regulatory Compliance report. (Yes)
+
+Box 1: Yes -
+Azure Security Center is a unified infrastructure security management system that strengthens the security posture of your data centers, and provides advanced threat protection across your hybrid workloads in the cloud - whether they're in Azure or not - as well as on premises.
+
+Box 2: No -
+Only two features: Continuous assessment and security recommendations, and Azure secure score, are free.
+
+Box 3: Yes -
+The advanced monitoring capabilities in Security Center also let you track and manage compliance and governance over time. The overall compliance provides you with a measure of how much your subscriptions are compliant with policies associated with your workload.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Defence in depth layers (from bottom to top):
+✑ Data
+- In almost all cases attackers are after data.
+- Data can be in database, stored on disk inside VMs, on a SaaS application such as Office 365 or in cloud storage.
+- Those storing and controlling access to data to ensures that it's properly secured
+- Often regulatory requirements dictates controls & processes
+- to ensure confidentiality, integrity, and availability.
+✑ Application
+- Ensure applications are secure and free of vulnerabilities.
+- Store sensitive application secrets in a secure storage medium.
+- Make security a design requirement for all application development.
+- Integrate security into the application development life cycle.
+✑ Compute
+- Secure access to virtual machines.
+- Implement endpoint protection and keep systems patched and current.
+- Malware, unpatched systems, and improperly secured systems open your environment to attacks.
+✑ Networking
+- Limit communication between resources.
+- Deny by default.
+- Allow only what is required
+- Restrict inbound internet access and limit outbound, where appropriate.
+- Implement secure connectivity to on-premises networks.
+✑ Perimeter
+- Use distributed denial of service (DDoS) protection to filter large-scale attacks before they can cause a denial of service for end users.
+- Use perimeter firewalls to identify and alert on malicious attacks against your network.
+✑ Identity and access
+- Control access to infrastructure and change control.
+- Access granted is only what is needed
+- Use single sign-on and multi-factor authentication.
+- Audit events and changes.
+✑ Physical security
+- Building security & controlling access to computing hardware.
+- First line of defense.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Azure Disk Encryption requires an Azure Key Vault to control and manage disk encryption keys and secrets.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Any, or an individual IP address, classless inter-domain routing (CIDR) block (10.0.0.0/24, for example), service tag, or application security group.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Playbooks are collections of procedures that can be run from Azure Sentinel in response to an alert or incident. A playbook can help automate and orchestrate your response, and can be set to run automatically when specific alerts or incidents are generated, by being attached to an analytics rule or an automation rule, respectively. It can also be run manually on-demand.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Box 1: Yes
+The tool you would use to sync the accounts is Azure AD Connect. The Azure Active Directory Connect
+synchronization services (Azure AD Connect sync) is a main component of Azure AD Connect. It takes care
+of all the operations that are related to synchronize identity data between your on-premises environment
+and Azure AD.
+Box 2: Yes
+As described above, third-party cloud services and on-premises Active Directory can be used to access
+Azure resources. This is known as ‘federation’.
+Federation is a collection of domains that have established trust. The level of trust may vary, but typically
+includes authentication and almost always includes authorization. A typical federation might include a
+number of organizations that have established trust for shared access to a set of resources.
+Box 3: Yes
+Azure Active Directory (Azure AD) is a centralized identity provider in the cloud. This is the primary built-in
+authentication and authorization service to provide secure access to Azure resources.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Your company needs to deploy an application to virtual machines hosted in Azure. The solution must ensure an SLA of 99.99%. What is the minimum number of virtual machines and availability zones that you need to recommend for the deployment?
+Two virtual machines and Two availability zones.

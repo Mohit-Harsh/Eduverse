@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google Drive Uploader</title>
+    <link rel="stylesheet" href="index.css" />
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+    <div class="upload-container">
+      <h2>Google Drive Uploader</h2>
+
+      <div class="name-area" id="nameArea">
+        <p>Name the file you want to upload</p>
+        <input type="text" id="nameInput" autofocus />
+      </div>
+
+      <div class="upload-area" id="uploadArea">
+        <p>Drag & drop files here or click to select</p>
+        <!-- <input type="file" id="fileInput" multiple /> -->
+        <input type="file" id="fileInput" />
+      </div>
+
+      <div class="file-info" id="fileInfo"></div>
+      <div class="status" id="status"></div>
+      <div class="shareable-link" id="shareableLink"></div>
+    </div>
+  </body>
+</html>

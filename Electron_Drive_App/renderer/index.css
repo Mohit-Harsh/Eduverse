@@ -1,0 +1,116 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.upload-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.name-area {
+    border: 2px dashed #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+    transition: border-color 0.3s ease;
+}
+
+.upload-area {
+    border: 2px dashed #ccc;
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+
+
+.upload-area:hover {
+    border-color: #4285f4;
+}
+
+.upload-area.dragging {
+    border-color: #4285f4;
+    background-color: #e8f0fe;
+}
+
+.btn {
+    background-color: #4285f4;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #3367d6;
+}
+
+.btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.status {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 4px;
+    display: none;
+}
+
+.status.success {
+    background-color: #e6f4ea;
+    color: #137333;
+    display: block;
+}
+
+.status.error {
+    background-color: #fce8e6;
+    color: #c5221f;
+    display: block;
+}
+
+.status.progress {
+    background-color: #e8f0fe;
+    color: #1a73e8;
+    display: block;
+}
+
+.file-info {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+}
+
+.shareable-link {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    word-break: break-all;
+}
+
+.shareable-link a {
+    color: #1a73e8;
+    text-decoration: none;
+}
+
+.shareable-link a:hover {
+    text-decoration: underline;
+}
+
+#fileInput {
+    display: none;
+}
