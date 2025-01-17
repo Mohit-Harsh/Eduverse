@@ -17,8 +17,8 @@ export default function ResourcePage() {
   const params = useParams()
 
   console.log('Params: ', params)
-
-  const [resources, setResources] = useState()
+  console.log('Location: ', state)
+  const [resources, setResources] = useState(undefined)
 
   const [searchResults, setSearchResults] = useState(undefined)
 
@@ -27,35 +27,29 @@ export default function ResourcePage() {
   }, [resources])
 
   React.useEffect(() => {
-    async function loadResources() {
-      try {
-        const data = await window.api.getResources()
-        if (data.success) {
-          setResources(data.resources)
-        } else {
-          console.error('Failed to load resources:', data.error)
-        }
-      } catch (error) {
-        console.error('Error loading resources:', error)
-      }
+    async function getResources() {
+      let data = await window.api.getResources({ dir: state.dir, id: state.id })
+      setResources(data)
     }
 
-    loadResources()
+    getResources()
   }, [])
 
   function showUploadForm() {
     document.getElementById('upload_form').style.setProperty('display', 'flex')
   }
 
-  async function handleDelete(resource) {
-    console.log(resource)
-    const res = await window.api.deleteResource(resource)
-    if (res) {
-      let new_resources = await window.api.getResources()
+  async function handleDriveUpload(item) {
+    const res = await window.api.uploadDriveFile(item)
+    console.log(res)
+  }
 
-      if (new_resources.success) {
-        setResources(new_resources.resources)
-      }
+  async function handleDelete(file) {
+    console.log(file)
+    const res = await window.api.deleteResource(file)
+    if (res) {
+      let new_resources = [...resources].filter((item) => item != file)
+      setResources(new_resources)
     }
   }
 
@@ -155,38 +149,45 @@ export default function ResourcePage() {
                   <p>Last Modified</p>
                 </div>
                 <div>
-                  {searchResults.map((item, key) => {
-                    return (
-                      <div key={key} className={styles.tableRow}>
-                        <p
-                          className={styles.name}
+                  {searchResults.map((item, key) => (
+                    <div key={key} className={styles.tableRow}>
+                      <p
+                        className={styles.name}
+                        onClick={() => {
+                          window.api.openFile(item.path)
+                        }}
+                      >
+                        <FileIcon type={item.type} />
+                        {item.name}
+                      </p>
+                      <p>{item.type}</p>
+                      <p>{formatFileSize(item.size)}</p>{' '}
+                      <span>
+                        {new Date(item.date).toLocaleDateString('en-GB')}
+                        <svg
+                          onClick={() => handleDelete(item)}
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M8.586 2.586A2 2 0 0 1 10 2h4a2 2 0 0 1 2 2v2h3a1 1 0 1 1 0 2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a1 1 0 0 1 0-2h3V4a2 2 0 0 1 .586-1.414ZM10 6h4V4h-4v2Zm1 4a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Zm4 0a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span>
+                        <button
                           onClick={() => {
-                            window.api.openFile(item.drive_link)
+                            handleDriveUpload(item)
                           }}
                         >
-                          <FileIcon type={item.type} />
-                          {item.name}
-                        </p>
-                        <p>{item.type}</p>
-                        <p>{item.size}</p>
-                        <span>
-                          {new Date(item.date).toLocaleDateString('en-GB')}
-                          <svg
-                            onClick={() => handleDelete(item)}
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M8.586 2.586A2 2 0 0 1 10 2h4a2 2 0 0 1 2 2v2h3a1 1 0 1 1 0 2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a1 1 0 0 1 0-2h3V4a2 2 0 0 1 .586-1.414ZM10 6h4V4h-4v2Zm1 4a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Zm4 0a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                      </div>
-                    )
-                  })}
+                          share
+                        </button>
+                      </span>
+                    </div>
+                  ))}
                 </div>
               </div>
             ) : (

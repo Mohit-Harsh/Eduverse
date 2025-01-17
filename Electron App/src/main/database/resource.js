@@ -28,13 +28,13 @@ const resourceSchema = new mongoose.Schema(
       required: true
     },
     ext: {
-      type: String,
-      required: true
+      type: String
+      // required: true
     }
-  },
-  {
-    timestamps: true // This will add createdAt and updatedAt fields
   }
+  // {
+  //   timestamps: true // This will add createdAt and updatedAt fields
+  // }
 )
 
 const Resource = mongoose.model('Resource', resourceSchema)

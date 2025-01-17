@@ -15,9 +15,9 @@ const SCOPES = [
   'https://www.googleapis.com/auth/userinfo.email'
 ]
 
-const TOKEN_PATH = 'C:/Users/mohit/AppData/Roaming/Eduverse/.gdrive-tokens.json'
+const TOKEN_PATH = path.join(process.env.APPDATA, '/Eduverse/.gdrive-tokens.json')
 
-const USER_PATH = 'C:/Users/mohit/AppData/Roaming/Eduverse/user.json'
+const USER_PATH = path.join(process.env.APPDATA, '/Eduverse/user.json')
 
 class DriveUploadManager {
   constructor(credentials) {
@@ -42,14 +42,11 @@ class DriveUploadManager {
         this.auth.setCredentials(tokens)
         return true
       }
-    } catch (error) {
-      console.error('Error loading tokens:', error)
-    }
+    } catch (error) {}
     return false
   }
 
   loadUser() {
-    console.log(USER_PATH)
     try {
       if (fs.existsSync(USER_PATH)) {
         const user = JSON.parse(fs.readFileSync(USER_PATH))
@@ -199,100 +196,101 @@ class DriveUploadManager {
   }
 
   // Upload file and get shareable link
+  // If condition will execute for file upload and not for link upload
   async uploadFile(req) {
     this.drive = google.drive({ version: 'v3', auth: this.auth })
-
     try {
-      if (req.mode) {
-        const fileMetadata = {
-          name: path.basename(req.data.location)
-        }
-
-        const media = {
-          mimeType: this.getMimeType(req.data.location),
-          body: fs.createReadStream(req.data.location)
-        }
-
-        this.database.connect()
-
-        // Upload file
-        const file = await this.drive.files.create({
-          resource: fileMetadata,
-          media: media,
-          fields: 'id, webViewLink'
-        })
-
-        // Update file permissions to make it shareable
-        await this.drive.permissions.create({
-          fileId: file.data.id,
-          requestBody: {
-            role: 'reader',
-            type: 'anyone'
-          }
-        })
-        const { size, unit } = this.formatFileSize(req.data.size)
-        const resource = new Resource({
-          name: req.data.name,
-          size: size,
-          unit: unit,
-          drive_link: file.data.webViewLink,
-          createdBy: this.user._id,
-          ext: path.extname(req.data.location).toLowerCase()
-        })
-
-        await resource.save()
-        const user = await User.findById(this.user._id)
-        user.resources.push(resource.id)
-        await user.save()
-        this.user = user
-        this.database.disconnect()
-
-        return {
-          success: true,
-          fileId: resource.id,
-          name: req.data.name,
-          shareableLink: file.data.webViewLink,
-          type: resource.ext,
-          size: resource.size + ' ' + resource.unit,
-          date: resource.createdAt
-        }
-      } else {
-        this.database.connect()
-        const fileId = req.link.split('/d/')[1].split('/')[0] // Extract file ID
-
-        const res = await this.drive.files.get({
-          fileId: fileId,
-          fields: 'name, mimeType, size, modifiedTime, createdTime'
-        })
-        const { size, unit } = this.formatFileSize(req.data.size)
-
-        const fileMetadata = res.data
-        const resource = new Resource({
-          name: req.data.name,
-          drive_link: req.data.link,
-          createdBy: this.user._id,
-          ext: this.getFileExtension(fileMetadata.mimeType),
-          size: size,
-          unit: unit
-        })
-
-        await resource.save()
-        const user = await User.findById(this.user._id)
-        user.resources.push(resource.id)
-        await user.save()
-        this.user = user
-        this.database.disconnect()
-
-        return {
-          success: true,
-          fileId: resource.id,
-          name: resource.name,
-          drive_link: resource.drive_link,
-          type: resource.ext,
-          date: resource.createdAt,
-          size: resource.size + ' ' + resource.unit
-        }
+      // if mode  = 1: File upload to drive
+      // if (req.mode) {
+      const fileMetadata = {
+        name: path.basename(req.path)
       }
+
+      const media = {
+        mimeType: this.getMimeType(req.path),
+        body: fs.createReadStream(req.path)
+      }
+
+      this.database.connect()
+
+      // Upload file
+      const file = await this.drive.files.create({
+        resource: fileMetadata,
+        media: media,
+        fields: 'id, webViewLink'
+      })
+
+      // Update file permissions to make it shareable
+      await this.drive.permissions.create({
+        fileId: file.data.id,
+        requestBody: {
+          role: 'reader',
+          type: 'anyone'
+        }
+      })
+      // const { size, unit } = this.formatFileSize()
+      const resource = new Resource({
+        name: req.name,
+        size: req.size,
+        // unit: unit,
+        drive_link: file.data.webViewLink,
+        createdBy: this.user._id,
+        ext: path.extname(req.path).toLowerCase()
+      })
+
+      await resource.save()
+      const user = await User.findById(this.user._id)
+      user.resources.push(resource.id)
+      await user.save()
+      this.user = user
+      this.database.disconnect()
+
+      return {
+        success: true,
+        fileId: resource.id,
+        name: req.name,
+        shareableLink: file.data.webViewLink,
+        type: resource.ext,
+        size: resource.size,
+        date: resource.createdAt
+      }
+
+      // } else {
+      //   this.database.connect()
+      //   const fileId = req.link.split('/d/')[1].split('/')[0] // Extract file ID
+
+      //   const res = await this.drive.files.get({
+      //     fileId: fileId,
+      //     fields: 'name, mimeType, size, modifiedTime, createdTime'
+      //   })
+      //   // const { size, unit } = this.formatFileSize(req.size)
+
+      //   const fileMetadata = res.data
+      //   const resource = new Resource({
+      //     name: req.name,
+      //     drive_link: req.link,
+      //     createdBy: this.user._id,
+      //     ext: this.getFileExtension(fileMetadata.mimeType),
+      //     size: req.size
+      //   })
+
+      //   await resource.save()
+      //   const user = await User.findById(this.user._id)
+      //   user.resources.push(resource.id)
+      //   await user.save()
+      //   this.user = user
+      //   this.database.disconnect()
+
+      //   return {
+      //     success: true,
+      //     fileId: resource.id,
+      //     name: resource.name,
+      //     drive_link: resource.drive_link,
+      //     type: resource.ext,
+      //     date: resource.createdAt,
+      //     size: resource.size
+      //   }
+      // }
     } catch (error) {
       return {
         success: false,
@@ -326,119 +324,67 @@ class DriveUploadManager {
     return mimeTypes[mimeType] || '' // Returns empty string if MIME type is not found
   }
 
-  async getUserResources() {
-    try {
-      await this.database.connect()
-
-      // Find the user and populate their resources
-      const user = await User.findById(this.user._id).populate('resources')
-
-      if (!user) {
-        this.startAuthFlow()
-        throw new Error('User not found')
-      }
-
-      const serializedResources = user.resources.map((resource) => ({
-        id: resource._id.toString(),
-        name: resource.name,
-        size: resource.size + ' ' + resource.unit,
-        drive_link: resource.drive_link,
-        ext: resource.ext,
-        date: resource.createdAt,
-        type: resource.ext // Remove the dot and uppercase
-      }))
-
-      await this.database.disconnect()
-
-      return {
-        success: true,
-        resources: serializedResources
-      }
-    } catch (error) {
-      return {
-        success: false,
-        error: error.message
-      }
-    }
-  }
-
   // Delete a specific resource by ID
-  async deleteResource(resourceId) {
-    console.log(resourceId)
-    let isConnected = false
-    try {
-      await this.database.connect()
-      isConnected = true
+  // async deleteResource(resourceId) {
+  //   console.log(resourceId)
+  //   let isConnected = false
+  //   try {
+  //     await this.database.connect()
+  //     isConnected = true
 
-      // Find and verify resource
-      const resource = await Resource.findById(resourceId)
-      if (!resource) {
-        throw new Error('Resource not found')
-      }
-      console.log(resource)
+  //     // Find and verify resource
+  //     const resource = await Resource.findById(resourceId)
+  //     if (!resource) {
+  //       throw new Error('Resource not found')
+  //     }
+  //     console.log(resource)
 
-      // Verify ownership
-      if (resource.createdBy.toString() !== this.user._id.toString()) {
-        throw new Error('Unauthorized: Resource does not belong to current user')
-      }
+  //     // Verify ownership
+  //     if (resource.createdBy.toString() !== this.user._id.toString()) {
+  //       throw new Error('Unauthorized: Resource does not belong to current user')
+  //     }
 
-      // Setup drive if needed
-      if (!this.drive) {
-        this.drive = google.drive({ version: 'v3', auth: this.auth })
-      }
+  //     // Setup drive if needed
+  //     if (!this.drive) {
+  //       this.drive = google.drive({ version: 'v3', auth: this.auth })
+  //     }
 
-      // Delete from Google Drive
-      try {
-        const fileId = this.extractFileIdFromUrl(resource.drive_link)
-        await this.drive.files.delete({ fileId: fileId })
-      } catch (driveError) {
-        console.error('Error deleting from Drive:', driveError)
-        // Continue with database cleanup even if Drive deletion fails
-      }
+  //     // Delete from Google Drive
+  //     try {
+  //       const fileId = this.extractFileIdFromUrl(resource.drive_link)
+  //       await this.drive.files.delete({ fileId: fileId })
+  //     } catch (driveError) {
+  //       console.error('Error deleting from Drive:', driveError)
+  //       // Continue with database cleanup even if Drive deletion fails
+  //     }
 
-      // Update user document first
-      // const updatedUser = await User.findOneAndUpdate(
-      //   { _id: this.user._id },
-      //   { $pull: { resources: resourceId } },
-      //   { new: true, session: this.database.connect() }
-      // )
+  //     await resource.deleteOne()
+  //     const updatedUser = await User.findById(this.user._id)
 
-      // if (!updatedUser) {
-      //   throw new Error('Failed to update user document')
-      // }
+  //     updatedUser.resources = [...this.user.resources].filter((item) => item != resource._id)
+  //     console.log(updatedUser)
 
-      // Delete resource document
-      // const deletedResource = await Resource.findByIdAndDelete(resourceId)
-      // if (!deletedResource) {
-      //   throw new Error('Failed to delete resource document')
-      // }
-      await resource.deleteOne()
-      const updatedUser = await User.findById(this.user._id)
+  //     // Update local user object
+  //     this.user = await updatedUser.save()
 
-      updatedUser.resources = [...this.user.resources].filter((item) => item != resource._id)
-      console.log(updatedUser)
+  //     await this.database.disconnect()
+  //     isConnected = false
 
-      // Update local user object
-      this.user = await updatedUser.save()
-
-      await this.database.disconnect()
-      isConnected = false
-
-      return {
-        success: true,
-        message: 'Resource deleted successfully'
-      }
-    } catch (error) {
-      console.error('Delete resource error:', error)
-      if (isConnected) {
-        await this.database.disconnect()
-      }
-      return {
-        success: false,
-        error: error.message || 'Failed to delete resource'
-      }
-    }
-  }
+  //     return {
+  //       success: true,
+  //       message: 'Resource deleted successfully'
+  //     }
+  //   } catch (error) {
+  //     console.error('Delete resource error:', error)
+  //     if (isConnected) {
+  //       await this.database.disconnect()
+  //     }
+  //     return {
+  //       success: false,
+  //       error: error.message || 'Failed to delete resource'
+  //     }
+  //   }
+  // }
 
   // Helper method to extract file ID from Google Drive URL
   extractFileIdFromUrl(url) {

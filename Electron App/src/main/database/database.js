@@ -4,8 +4,7 @@ const mongoose = require('mongoose')
 class Database {
   constructor() {
     this.isConnected = false
-    this.mongoURI =
-      'mongodb+srv://mohith8861:mxa2ormrYC42mLKx@cluster0.y9zyy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+    this.mongoURI = process.env.MONGO_URI
     this.options = {
       serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of 30s
       socketTimeoutMS: 45000, // Close sockets after 45s of inactivity
@@ -15,7 +14,6 @@ class Database {
 
   async connect() {
     if (this.isConnected) {
-      console.log('Using existing database connection')
       return
     }
 
@@ -23,7 +21,6 @@ class Database {
       await mongoose.connect(this.mongoURI, this.options)
 
       this.isConnected = true
-      console.log('Database connection successful')
 
       // Handle connection errors after initial connection
       mongoose.connection.on('error', (err) => {
@@ -32,14 +29,12 @@ class Database {
       })
 
       mongoose.connection.on('disconnected', () => {
-        console.log('MongoDB disconnected')
         this.isConnected = false
       })
 
       // Handle process termination
       process.on('SIGINT', async () => {
         await mongoose.connection.close()
-        console.log('MongoDB connection closed through app termination')
         process.exit(0)
       })
     } catch (error) {
@@ -57,7 +52,6 @@ class Database {
     try {
       await mongoose.connection.close()
       this.isConnected = false
-      console.log('Database connection closed')
     } catch (error) {
       console.error('Error closing database connection:', error)
       throw error

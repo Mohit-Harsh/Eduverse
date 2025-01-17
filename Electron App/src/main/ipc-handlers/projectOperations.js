@@ -5,7 +5,7 @@ import { join } from 'path/posix'
 import { months } from '../../renderer/src/months'
 
 function setupProjectOperations() {
-  const dirPath = path.join('C:\\', 'Users', 'Public', 'Documents', 'Eduverse')
+  const dirPath = path.join(process.env.APPDATA, 'Eduverse')
   const filePath = path.join(dirPath, 'projects.json')
 
   // Function to ensure directory and file exist
@@ -18,10 +18,8 @@ function setupProjectOperations() {
 
     // Check if the file exists
     if (!fs.existsSync(filePath)) {
-      console.log(`File does not exist. Creating: ${filePath}`)
       const defaultContent = JSON.stringify({})
       fs.writeFileSync(filePath, defaultContent, 'utf-8')
-      console.log('File created with default content.')
     }
   }
 
@@ -32,7 +30,6 @@ function setupProjectOperations() {
       const data = fs.readFileSync(filePath, 'utf-8')
       return data
     } catch (error) {
-      console.error('Error reading the file:', error)
       return null
     }
   }

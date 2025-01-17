@@ -10,6 +10,7 @@ export default function ResourceUpload({ dir, id, resources, setResources }) {
 
   async function handleSubmit(event) {
     event.preventDefault()
+
     if (mode) {
       const req = {
         data: {
@@ -20,32 +21,31 @@ export default function ResourceUpload({ dir, id, resources, setResources }) {
           location: file.path
         },
         id: id,
-        dir: dir,
-        mode: mode
+        dir: dir
       }
+
       const res = await window.api.uploadFile(req)
 
       if (res.status) {
-        setResources([...resources, res])
+        setResources(res.data)
         handleClose()
       }
     } else {
       const req = {
         data: {
-          name: document.getElementById('resource_title').value,
+          title: document.getElementById('resource_title').value,
           date: new Date().toLocaleDateString('en-GB'),
           type: 'link',
           link: document.getElementById('resource_link').value
         },
         id: id,
-        dir: dir,
-        mode: mode
+        dir: dir
       }
 
       const res = await window.api.uploadFile(req)
 
       if (res.status) {
-        setResources([...resources, res])
+        setResources(res.data)
         handleClose()
       }
     }

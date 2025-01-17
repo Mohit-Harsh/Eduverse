@@ -47,8 +47,6 @@ async function setupOpenAI() {
 
   // });
 
-  console.log(airoadmap)
-
   return airoadmap
   //     }
   //     catch(err)

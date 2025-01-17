@@ -17,7 +17,7 @@ const api = {
   deleteModule: ({ roadmap, index, dir }) =>
     ipcRenderer.invoke('delete-module', { roadmap, index, dir }),
   addTopic: ({ new_roadmap, dir }) => ipcRenderer.invoke('add-topic', { new_roadmap, dir }),
-  windowReload: () => ipcRenderer.invoke('reload-window')
+  uploadDriveFile: (req) => ipcRenderer.invoke('upload-drive-file', req)
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

@@ -4,7 +4,7 @@ import docx_icon from '../../assets/docx_icon.png'
 import pptx_icon from '../../assets/pptx_icon.png'
 
 export default function FileIcon({ type }) {
-  if (type == '.png' || type == '.jpg' || type == '.jpeg')
+  if (type.split('/')[0] == '.png' || type == '.jpg' || type == '.jpeg')
     return (
       <svg
         className={styles.icon}

@@ -24,12 +24,13 @@
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^6.3.1",
     "axios": "^1.7.9",
+    "dotenv": "^16.4.7",
+    "googleapis": "^121.0.0",
+    "mongoose": "^8.3.4",
     "motion": "^11.15.0",
     "openai": "^4.78.1",
     "react-router": "^7.1.1",
-    "uuid": "^11.0.4",
-    "googleapis": "^121.0.0",
-    "mongoose": "^8.3.4"
+    "uuid": "^11.0.4"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config": "^1.0.2",
