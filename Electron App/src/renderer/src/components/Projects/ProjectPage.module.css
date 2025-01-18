@@ -213,7 +213,7 @@
 .openbtn
 {
     background-color: transparent;
-    border: none;
+    border: 1px solid var(--border);
     color: gray;
     font-size: 14px;
     font-weight: bold;
@@ -224,30 +224,28 @@
 }
 .openbtn:hover
 {
-    color: var(--accentColor);
+    color: var(--primaryColor);
+    border: 1px solid var(--accentColor);
+    background-color: var(--accentColor);
 }
 
 .deletebtn
 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: transparent;
-    border: none;
-    padding: 0px;
+    border: 1px solid var(--border);
+    color: gray;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s;
 }
-.deletebtn>svg
+.deletebtn:hover
 {
-    width: 16px;
-    height: 16px;
-    fill: gray;
-    transition: all 0.3s;
-}
-.deletebtn:hover >svg
-{
-    fill: var(--accentColor);
+    color: var(--primaryColor);
+    border: 1px solid var(--accentColor);
+    background-color: var(--accentColor);
 }
 
 @media (max-width: 1365px) 

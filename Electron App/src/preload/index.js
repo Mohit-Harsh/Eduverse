@@ -3,21 +3,23 @@ import { electronAPI } from '@electron-toolkit/preload'
 
 // Custom APIs for renderer
 const api = {
-  createProject: (req) => ipcRenderer.invoke('create-project', req),
-  deleteProject: (req) => ipcRenderer.invoke('delete-project', req),
-  uploadFile: (req) => ipcRenderer.invoke('upload-file', req),
-  getRoadmap: (req) => ipcRenderer.invoke('get-roadmap', req),
-  saveRoadmap: (req) => ipcRenderer.invoke('save-roadmap', req),
-  getResources: (req) => ipcRenderer.invoke('get-resources', req),
-  deleteResource: (req) => ipcRenderer.invoke('delete-resource', req),
-  openFile: (req) => ipcRenderer.invoke('open-file', req),
-  deleteTopic: ({ new_roadmap, tid, dir }) =>
-    ipcRenderer.invoke('delete-topic', { new_roadmap, tid, dir }),
-  createModule: ({ new_roadmap, dir }) => ipcRenderer.invoke('create-module', { new_roadmap, dir }),
-  deleteModule: ({ roadmap, index, dir }) =>
-    ipcRenderer.invoke('delete-module', { roadmap, index, dir }),
-  addTopic: ({ new_roadmap, dir }) => ipcRenderer.invoke('add-topic', { new_roadmap, dir }),
-  uploadDriveFile: (req) => ipcRenderer.invoke('upload-drive-file', req)
+
+  createProject: (req) => ipcRenderer.invoke("create-project",req),
+  deleteProject: (req) => ipcRenderer.invoke("delete-project",req),
+  createAIRoadmap: (req) => ipcRenderer.invoke("create-ai-roadmap",req),
+  uploadFile: (req) => ipcRenderer.invoke('upload-file',req),
+  getRoadmap: (req) => ipcRenderer.invoke("get-roadmap",req),
+  saveRoadmap: (req) => ipcRenderer.invoke("save-roadmap",req),
+  getResources: (req) => ipcRenderer.invoke("get-resources",req),
+  deleteResource: (req) => ipcRenderer.invoke("delete-resource",req),
+  openFile: (req) => ipcRenderer.invoke("open-file",req),
+  openLink: (req) => ipcRenderer.invoke("open-link",req),
+  deleteTopic: ({new_roadmap,tid,dir}) => ipcRenderer.invoke("delete-topic",{new_roadmap,tid,dir}),
+  createModule: ({new_roadmap,dir})=> ipcRenderer.invoke('create-module',{new_roadmap,dir}),
+  deleteModule: ({roadmap,index,dir}) => ipcRenderer.invoke("delete-module",{roadmap,index,dir}),
+  addTopic: ({new_roadmap,dir}) => ipcRenderer.invoke("add-topic",{new_roadmap,dir}),
+  uploadDriveFile: (req) => ipcRenderer.invoke('upload-drive-file', req),
+  resourceRecommendations: async (req) => await ipcRenderer.invoke('handle-resource-recommendations',req),
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

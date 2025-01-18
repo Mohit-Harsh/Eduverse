@@ -1,4 +1,4 @@
-.container >form> input, .container >form> textarea
+.inputs
 {
     font-size: 16px;
     font-weight: 400;
@@ -17,7 +17,7 @@
     resize: vertical;
 }
 
-.container>form>input::placeholder, .container>form>textarea::placeholder
+.inputs::placeholder
 {
     color: var(--formInputBackground);
     font-size: 14px;
@@ -65,7 +65,24 @@
     cursor: pointer;
 }
 
-.container >form> input:focus, .container>form > textarea:focus
+.inputs:focus
 {
     outline: none;
-} 
+}
+
+.check
+{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+    color: var(--formInputBackground);
+}
+
+.check>input
+{
+    width: fit-content;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+}

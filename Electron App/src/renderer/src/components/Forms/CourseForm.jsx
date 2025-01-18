@@ -1,8 +1,11 @@
 import styles from './CourseForm.module.css';
 import * as React from 'react';
+import { CircularProgress } from '@mui/material';
 
 export default function CourseForm({setProjects})
 {
+
+    const [check,setCheck] = React.useState(false);
 
     console.log(Date.now());
 
@@ -14,23 +17,31 @@ export default function CourseForm({setProjects})
 
     async function handleSubmit(event)
     {
+        document.getElementById('submitBtn').style.setProperty('display','none');
+        document.getElementById('circularProgress').style.setProperty('display','flex');
+
         event.preventDefault();
         console.log(event.target);
         let form = document.getElementById("courseForm");
         let t = document.getElementById('title').value;
         let d = document.getElementById('description').value;
-        let s = document.getElementById('syllabus').value;
+
+        let content = [];
+
+        if(check)
+        {
+            content = await window.api.createAIRoadmap(document.getElementById('syllabus').value);
+        }
         
-        let res = await window.api.createProject({title:t,description:d,syllabus:s});
+        let res = await window.api.createProject({title:t,description:d,roadmap:content});
+
+        document.getElementById('submitBtn').style.setProperty('display','flex');
+        document.getElementById('circularProgress').style.setProperty('display','none');
         
         if(res.status == true)
         {
             form.style.setProperty("display","none");
             setProjects(JSON.parse(res.data));
-        }
-        else
-        {
-            alert("Project with the same name already exits in this location.")
         }
         
     }
@@ -50,10 +61,12 @@ export default function CourseForm({setProjects})
                     </button>
                 </div>
                 <form onSubmit={handleSubmit}>
-                    <input className='inputs' placeholder='Name' style={{display:'block',boxSizing:'border-box'}} type="text" name="title" id="title" title="Name" required/>
-                    <input className='inputs' placeholder='Description' style={{display:'block',boxSizing:'border-box'}} type="text" name="description" id="description" title="Description" required/>
-                    <textarea className='inputs' placeholder='Syllabus' style={{display:'block',boxSizing:'border-box'}} name="syllabus" id="syllabus" title="Syllabus" required/>
-                    <button type='submit' style={{width:"fit-content",margin:'10px auto',backgroundColor:'var(--accentColor)',border:'none',color:"var(--primaryColor)",borderRadius:'5px'}}>Submit</button>
+                    <input  className={styles.inputs} placeholder='Name' style={{display:'block',boxSizing:'border-box'}} type="text" name="title" id="title" title="Name" required/>
+                    <input  className={styles.inputs} placeholder='Description' style={{display:'block',boxSizing:'border-box'}} type="text" name="description" id="description" title="Description" required/>
+                    <span className={styles.check}><input  type="checkbox" name="airoadmap" id="airoadmap" checked={check} onChange={()=>setCheck(!check)}/>Generate AI Roadmap</span>
+                    <textarea  className={styles.inputs} placeholder='Syllabus' style={{display:(check)?'block':'none',boxSizing:'border-box'}} name="syllabus" id="syllabus" title="Syllabus" required={check}/>
+                    <button id='submitBtn' type='submit' style={{width:"fit-content",margin:'10px auto',backgroundColor:'var(--accentColor)',border:'none',color:"var(--primaryColor)",borderRadius:'5px'}}>Submit</button>
+                    <CircularProgress id='circularProgress' style={{display:'none',margin:'30px auto'}} />
                 </form>
             </div>
 
