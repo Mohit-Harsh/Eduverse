@@ -146,7 +146,7 @@
 {
     display: grid;
     color: gray;
-    grid-template-columns: 3fr 1fr 1fr 1fr;
+    grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
     padding: 10px 20px;
     margin: 0px;
 }
@@ -160,7 +160,7 @@
 {
     display: grid;
     color: var(--text);
-    grid-template-columns: 3fr 1fr 1fr 1fr;
+    grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
     padding: 10px 20px;
     border-top: 1px solid var(--border);
     margin: 0px;
@@ -199,4 +199,13 @@
     width: 20px;
     height: 20px;
     fill: var(--svgFill);
+}
+
+.tableRow>span>button
+{
+    padding: 5px;
+    background-color: var(--accentColor);
+    color: var(--primaryColor);
+    cursor: pointer;
+
 }

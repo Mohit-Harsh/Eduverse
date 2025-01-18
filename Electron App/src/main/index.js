@@ -2,14 +2,14 @@ import { app, shell, BrowserWindow, ipcMain, utilityProcess, dialog } from 'elec
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-import {months} from '../renderer/src/months.js';
-import setupProjectOperations from './ipc-handlers/projectOperations.js';
-import setupRoadmapOperations from './ipc-handlers/roadmapOperations.js';
-import setupResourceOperations from './ipc-handlers/resourceOperations.js';
-import setupOpenAI from './ipc-handlers/openai.js';
-
-const fs = require('fs');
-const path = require('path');
+import { months } from '../renderer/src/months.js'
+import setupProjectOperations from './ipc-handlers/projectOperations.js'
+import setupRoadmapOperations from './ipc-handlers/roadmapOperations.js'
+import setupResourceOperations from './ipc-handlers/resourceOperations.js'
+import setupOpenAI from './ipc-handlers/openai.js'
+require('dotenv').config()
+const fs = require('fs')
+const path = require('path')
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -29,8 +29,8 @@ app.whenReady().then(() => {
   const mainWindow = new BrowserWindow({
     width: 1280,
     height: 720,
-    minWidth:600,
-    minHeight:400,
+    minWidth: 600,
+    minHeight: 400,
     show: false,
     // autoHideMenuBar:true,
     ...(process.platform === 'linux' ? { icon } : {}),
@@ -38,28 +38,28 @@ app.whenReady().then(() => {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false
     }
-  });
+  })
 
   const splash = new BrowserWindow({
     width: 600,
-    height:400,
-    show:true,
-    frame:false,
-    alwaysOnTop:true,
+    height: 400,
+    show: true,
+    frame: false,
+    alwaysOnTop: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false
     }
-  });
+  })
 
-  splash.loadFile('resources/splash.html');
+  splash.loadFile('resources/splash.html')
 
-  mainWindow.webContents.on("did-finish-load",()=>{
-    setTimeout(()=>{
-      splash.destroy();
-      mainWindow.maximize();
-    },3000);
+  mainWindow.webContents.on('did-finish-load', () => {
+    setTimeout(() => {
+      splash.destroy()
+      mainWindow.maximize()
+    }, 3000)
   })
 
   mainWindow.webContents.setWindowOpenHandler((details) => {
@@ -92,12 +92,11 @@ app.whenReady().then(() => {
 
   // Handlers
 
-  setupProjectOperations();
+  setupProjectOperations()
 
-  setupRoadmapOperations();
+  setupRoadmapOperations()
 
-  setupResourceOperations();
+  setupResourceOperations()
 
-  setupOpenAI();
-
+  setupOpenAI()
 })
