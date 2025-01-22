@@ -1,0 +1,75 @@
+
+.container
+{
+    height: fit-content;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.recomDiv
+{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: fit-content;
+    margin: 50px auto;
+    gap: 20px;
+}
+
+.recomDiv > div
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 15px;
+}
+
+.recomDiv>h3
+{
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--accentColor);
+}
+
+.recomList
+{
+    display: flex;
+    border: 1px solid var(--border);
+    background-color: transparent;
+    border-radius: 10px;
+    flex-direction: column;
+    margin: 0px;
+    align-items: start;
+    justify-content: start;
+    padding: 20px;
+}
+
+.recomWebsite
+{
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--black);
+    margin: 5px 0px;
+}
+
+.recomTitle
+{
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0px;
+    margin: 5px 0px;
+    cursor: pointer;
+}
+
+.recomTitle:hover
+{
+    text-decoration: underline;
+}
+
+.recomDes
+{
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--black);
+    margin: 5px 0px;
+}

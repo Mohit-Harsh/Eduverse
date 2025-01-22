@@ -2,12 +2,8 @@ import OpenAI from "openai";
 import { dialog, ipcMain } from "electron";
 import { v1 } from "uuid";
 
-async function setupOpenAI()
+async function setupOpenAI(openai)
 {
-    
-    const openai = new OpenAI();
-
-    let syllabus = "Embedded System Design";
 
     ipcMain.handle("create-ai-roadmap",async (event,syllabus)=>{
 

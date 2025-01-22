@@ -8,6 +8,7 @@ import setupRoadmapOperations from './ipc-handlers/roadmapOperations.js';
 import setupResourceOperations from './ipc-handlers/resourceOperations.js';
 import setupOpenAI from './ipc-handlers/openai.js';
 import setupRecommendations from './ipc-handlers/recommendations.js';
+import OpenAI from 'openai';
 
 const fs = require('fs');
 const path = require('path');
@@ -93,14 +94,16 @@ app.whenReady().then(() => {
 
   // Handlers
 
+  const openai = new OpenAI();
+
   setupProjectOperations();
 
   setupRoadmapOperations();
 
   setupResourceOperations();
 
-  setupOpenAI();
+  setupOpenAI(openai);
 
-  setupRecommendations();
+  setupRecommendations(openai);
 
 })

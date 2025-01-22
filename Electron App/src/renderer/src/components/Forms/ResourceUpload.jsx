@@ -37,7 +37,7 @@ export default function ResourceUpload({dir,id,resources,setResources})
         else
         {
             const req = {data:{
-                "title":document.getElementById("resource_title").value,
+                "name":document.getElementById("resource_title").value,
                 "date":(new Date()).toLocaleDateString("en-GB"),
                 "type":"link",
                 "link":document.getElementById("resource_link").value},

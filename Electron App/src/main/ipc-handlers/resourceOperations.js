@@ -14,9 +14,9 @@ const credentials = {
 
 const manager = new DriveUploadManager(credentials);
 
-function setupResourceOperations()
+async function setupResourceOperations()
 {
-    ipcMain.handle('upload-file',async (event,req)=>{
+  ipcMain.handle('upload-file',async (event,req)=>{
 
     const resDir = join(req.dir,"Resources",req.id);
 
@@ -25,39 +25,76 @@ function setupResourceOperations()
       fs.mkdirSync(resDir,{recursive:true});
     }
 
-    let newFilePath = `${req.data.name}${path.extname(req.data.location)}`
-
-    if(fs.existsSync(newFilePath))
+    if(req.data.type == 'link')
     {
-      const response = await dialog.showMessageBoxSync(null,{
-        type: 'question',
-        buttons: ['No','Yes'],
-        defaultId: 0,
-        title: 'File Already Exists',
-        message: 'A file with the same name already exists. Do you want to replace it?'
+      const shortcutPath = path.join(resDir, `${req.data.name}.url`);
+
+      if(fs.existsSync(shortcutPath))
+      {
+        const response = await dialog.showMessageBoxSync(null,{
+          type: 'question',
+          buttons: ['No','Yes'],
+          defaultId: 0,
+          title: 'File Already Exists',
+          message: 'A file with the same name already exists. Do you want to replace it?'
+        });
+        if(response == false)
+        {
+          return {status:false};
+        }
+      }
+
+      const shortcutContent = `[InternetShortcut]\nURL=${req.data.link}`;
+
+      fs.writeFileSync(shortcutPath, shortcutContent, (err) => {
+          if (err) {
+              dialog.showMessageBoxSync(null,{
+                type:'error',
+                title:'Failed to create desktop shortcut:',
+                message:err
+              });
+
+              return {status:false};
+          }
       });
-      if(response == false)
-      {
-        return {status:false};
-      }
+
     }
-    
-    fs.copyFileSync(req.data.location,join(resDir,newFilePath),null,(err)=>{
+    else
+    {
+      let newFilePath = `${req.data.name}${path.extname(req.data.location)}`
 
-      if(err)
+      if(fs.existsSync(newFilePath))
       {
-        dialog.showMessageBoxSync(null,{
-          type:'error',
-          title:'Error',
-          message:err,
-        })
-        return {status:false};
+        const response = await dialog.showMessageBoxSync(null,{
+          type: 'question',
+          buttons: ['No','Yes'],
+          defaultId: 0,
+          title: 'File Already Exists',
+          message: 'A file with the same name already exists. Do you want to replace it?'
+        });
+        if(response == false)
+        {
+          return {status:false};
+        }
       }
+      
+      fs.copyFileSync(req.data.location,join(resDir,newFilePath),null,(err)=>{
 
-    });
+        if(err)
+        {
+          dialog.showMessageBoxSync(null,{
+            type:'error',
+            title:'Error',
+            message:err,
+          })
+          return {status:false};
+        }
+
+      });
+    }
 
     let data = await getResources(event,req);
-    
+      
     return {status:true,data:data};
 
   });

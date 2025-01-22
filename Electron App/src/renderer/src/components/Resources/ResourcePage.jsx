@@ -12,6 +12,7 @@ import { theme } from "../MuiTooltipTheme";
 import {Tooltip} from "@mui/material";
 import { Link } from "react-router";
 import { useEffect } from "react";
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function ResourcePage()
 {
@@ -21,12 +22,10 @@ export default function ResourcePage()
 
     const [resources,setResources] = useState(undefined);
 
-    console.log("Resources: ",resources);
-
     const [searchResults,setSearchResults] = useState(undefined);
 
     useEffect(()=>{
-        setSearchResults((resources!=undefined)?resources.res:undefined);
+        setSearchResults((resources!=undefined)?resources:undefined);
     },[resources]);
 
     useEffect(()=>{
@@ -34,8 +33,7 @@ export default function ResourcePage()
         async function getResources()
         {
             const data = await window.api.getResources({dir:state.dir,id:state.id});
-            const recom = await window.api.resourceRecommendations(`${params.coursename} study materials`);
-            setResources({res:data,recom:recom});
+            setResources(data);
         }
 
         getResources();
@@ -54,25 +52,24 @@ export default function ResourcePage()
         const res = await window.api.deleteResource(file);
         if(res)
         {
-            let new_resources = [...resources.res].filter(item=>item!=file);
+            let new_resources = [...resources].filter(item=>item!=file);
             setResources(new_resources);
         }
     }
     
     function handleSearch(event)
     {
-        let new_resources = [...resources.res].filter(item=>item.name.includes(event.target.value));
+        let new_resources = [...resources].filter(item=>item.name.includes(event.target.value));
         setSearchResults(new_resources);
     }
 
     async function handleDriveUpload(item) {
-        const res = await window.api.uploadDriveFile(item)
-        console.log(res)
+        const res = await window.api.uploadDriveFile(item);
     }
 
     if(resources == undefined || searchResults == undefined)
     {
-        return(<></>)
+        return(<CircularProgress style={{color:"var(--accentColor)"}} />)
     }
     else
     return(<>
@@ -81,11 +78,21 @@ export default function ResourcePage()
         
             <Navbar></Navbar>
 
-            <ResourceUpload dir={state.dir} id={state.id} resources={resources.res} setResources={setResources}/>
+            <ResourceUpload dir={state.dir} id={state.id} resources={resources} setResources={setResources}/>
 
             <div className={styles.resourceDiv}>
 
-                <h3 className={styles.title}>{params.coursename}</h3>
+                <h3 className={styles.title}>{params.coursename}</h3> 
+                
+                <div className={styles.tools}>
+                    <Link style={{textDecoration:'none'}} to={`/resources/airecommendation/${params.coursename}`}>
+                        <div className={styles.toolsDiv}>
+                            <h3 className={styles.recomBtn} >AI Recommendations</h3>
+                            <p>Discover personalized AI-powered study material recommendations! Get curated guides, tutorials, courses, and more to boost your learning and achieve your goals efficiently.</p>
+                        </div>
+                    </Link>
+                </div>
+                
 
                 <div className={styles.header}>
 
@@ -146,21 +153,6 @@ export default function ResourcePage()
                 </div></div>:<NoFiles title={"No Existing Resources"} msg={"Click on Upload button to upload a resource."}/>}
                 
             </div>
-
-            <div className={styles.recomDiv}>
-
-                <h3>Related Study Materials</h3>
-
-                {resources.recom.map((item,key)=><div key={key} className={styles.recomList}>
-
-                    <p className={styles.recomWebsite}>{item['website']}</p>
-                    <h3 onClick={()=>window.api.openLink(item['link'])} className={styles.recomTitle}>{item['title']}</h3>
-                    <p className={styles.recomDes}>{item['description']}</p>
-
-                </div>)}
-
-            </div>
-
 
         </div>
 

@@ -28,6 +28,46 @@
     color: var(--text);
 }
 
+.tools
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin: 30px 0px;
+    gap: 20px;
+}
+
+.toolsDiv
+{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    align-items: start;
+    justify-content: start;
+    border: 1px solid var(--formBackground);
+    border-radius: 10px;
+    transition: all 0.3s;
+}
+
+.toolsDiv:hover
+{
+    background-color: var(--formBackground);
+}
+
+.toolsDiv>h3
+{
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.toolsDiv>p
+{
+    font-size: 14px;
+    font-weight: 400;    
+    color: var(--svgFill);
+    text-align: left;
+}
+
 .searchDiv
 {
     position: relative;
@@ -206,65 +246,4 @@
     fill: var(--svgFill);
     height: 20px;
     width: 20px;
-}
-
-.recomDiv
-{
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    height: fit-content;
-    margin: 100px auto;
-    gap: 20px;
-}
-
-.recomDiv>h3
-{
-    font-size: 20px;
-    font-weight: 500;
-    color: var(--text);
-}
-
-.recomList
-{
-    display: flex;
-    border: 1px solid var(--border);
-    background-color: transparent;
-    border-radius: 10px;
-    flex-direction: column;
-    margin: 0px;
-    align-items: start;
-    justify-content: center;
-    padding: 20px;
-}
-
-.recomWebsite
-{
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--black);
-    margin: 5px 0px;
-}
-
-.recomTitle
-{
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--text);
-    margin: 0px;
-    margin: 5px 0px;
-    cursor: pointer;
-}
-
-.recomTitle:hover
-{
-    text-decoration: underline;
-}
-
-.recomDes
-{
-    font-size: 12px;
-    font-weight: 400;
-    color: var(--black);
-    margin: 5px 0px;
 }
