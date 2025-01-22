@@ -34,7 +34,7 @@ app.whenReady().then(() => {
     minWidth:600,
     minHeight:400,
     show: false,
-    // autoHideMenuBar:true,
+    autoHideMenuBar:true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
