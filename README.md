@@ -1,6 +1,6 @@
 # Eduverse: AI-Powered Study Companion
 
-# <p align="center" style="background-color:#222831;padding:30px"> <img src="./assets/splash.png" height="200"></p>
+<p align="center" style="background-color:#222831;padding:30px"> <img src="./assets/splash.png" height="200"></p>
 
 ## Table of Contents
 
