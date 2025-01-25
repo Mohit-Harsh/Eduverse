@@ -205,9 +205,11 @@ Eduverse addresses these issues by offering an all-in-one platform that fosters 
 - While creating or editing a roadmap, click on "Fetch Recommendations."
 - Eduverse will scrape Bing for relevant links and display them for you to add to your roadmap.
 
-<!-- Watch this video for a working demo.
 
-<video src = "./assets/usage.mp4" controls width="75%"> <source ></video> -->
+
+https://github.com/user-attachments/assets/4ca401f5-09bf-4805-be32-12b0c98e5c06
+
+
 
 ## Installation
 
