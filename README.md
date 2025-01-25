@@ -17,18 +17,18 @@
 
 ## Introduction
 
-Eduverse is an innovative desktop application designed to help users create, manage, and share personalized learning roadmaps for any skill they wish to acquire. Whether you're learning to code, play an instrument, or master a new language, Eduverse simplifies the process by providing structured roadmaps, resource management, and social sharing capabilities. Built with generative AI at its core, Eduverse empowers users to learn smarter, not harder.
+Eduverse is an innovative desktop application designed to streamline skill acquisition by providing users with personalized, AI-powered learning roadmaps. Whether mastering programming, learning an instrument, or exploring a new language, Eduverse delivers a structured approach to learning through roadmap creation, resource management, and collaboration tools. Built with advanced generative AI, Eduverse simplifies the learning process, empowering users to achieve their goals effectively.
 
 ## Problem Statement
 
 Learning a new skill can be overwhelming. Many learners struggle with:
 
 - **Lack of Structure**: Not knowing where to start or how to progress.
-- **Resource Overload**: Overwhelming amount of resources present all over the internet. Difficulty in organizing and managing learning materials.
+- **Resource Overload**: Overwhelming number of resources avaiable online. Difficulty in organizing and managing learning materials.
 - **Motivation**: Losing track of progress and feeling demotivated.
 - **Collaboration**: Limited ability to share resources or follow others' learning paths.
 
-Eduverse addresses these challenges by providing a centralized platform where users can create structured roadmaps, attach resources, track progress, and collaborate with others all powered by generative AI to make the process seamless and intuitive.
+Eduverse addresses these issues by offering an all-in-one platform that fosters efficient learning through structured roadmaps, intuitive progress tracking, and seamless collaboration and learning path generation powered by generative AI for an optimized user experience.
 
 ## Features
 
@@ -37,7 +37,7 @@ Eduverse addresses these challenges by providing a centralized platform where us
 - Users can create detailed roadmaps for any skill, breaking it down into modules and topics.
 - Example: A roadmap for learning Python could include modules like "Basics," "Data Structures," and "Web Development," with topics like "Variables," "Lists," and "Flask Framework."
 - The user can let AI do the roadmap creation if they don't have a fixed path
-  
+
 <img src="./assets/Ai roadmap gen.png" >
 
 ### 2. **Edit and Update Roadmaps**
@@ -46,7 +46,6 @@ Eduverse addresses these challenges by providing a centralized platform where us
 - Example: Add a new topic, reorder modules, or mark a topic as completed.
 
 <img src="./assets/modules.png">
-
 
 ### 3. **Progress Tracking**
 
@@ -91,57 +90,55 @@ Eduverse addresses these challenges by providing a centralized platform where us
 <img src="./assets/ai recommend.png">
 
 ### 8. **Toggle between Light and Dark mode**
-  
+
 <img src="./assets/light mode.png" >
 
 ## How It Benefits Universities and Learners:
 
 - **For Universities**:
-
-  - Share structured, up-to-date curricula with students.
-  - Ensure students have access to the best resources for each course.
-  - Simplify resource distribution and updates.
+- Provide students with structured, up-to-date curricula tailored to their academic needs.
+- Ensure seamless access to high-quality resources for each course.
+- Streamline the distribution and updating of educational materials.
 
 - **For Learners**:
-  - Receive personalized resource recommendations based on your skill level and learning preferences.
-  - Stay updated with the latest materials for your chosen skill or course.
-  - Collaborate with peers by sharing and accessing resources effortlessly.
+- Access personalized resource recommendations aligned with your skill level and learning preferences.
+- Stay informed with the most recent materials for your selected skill or course.
+- Enhance collaboration by sharing and utilizing resources within a peer network effortlessly.
 
 ## How It Works
 
 ### 1. **Generative AI for Roadmap Creation**
 
-- Eduverse uses OpenAI's GPT to suggest modules and topics based on the skill the user wants to learn.
-- Example: If a user wants to learn "Digital Marketing," the AI generates a roadmap with modules like "SEO," "Content Marketing," and "Social Media Advertising and their relevant topics all in the format of the course object."
-  
+- Eduverse leverages OpenAI's GPT to dynamically generate learning roadmaps based on the desired skill.
+- Example: For "Digital Marketing," the AI creates a roadmap featuring modules like "SEO," "Content Marketing," and "Social Media Advertising," each broken down into relevant topics formatted as a course object.
+
 ### 2. **Resource Upload and Sharing**
 
-- When a user selects the "Share Resource" option, the application will prompt the user to grant permission to access their Google Drive. Upon user consent, the app will authenticate and retrieve the access and refresh tokens, which are securely stored on the user's device for future use.
-- After the tokens are successfully obtained, the resource file is uploaded to Google Drive using the Google Drive API.
-- A sharable link is generated and stored in the database for easy access.
+- Users select the "Share Resource" option, granting the app permission to access their Google Drive.
+- Upon consent, access and refresh tokens are securely stored on the user's device.
+- Resources are uploaded to Google Drive via its API, and a shareable link is generated and stored in the database for easy retrieval.
 
 ### 3. **Progress Tracking**
 
-- Users can mark topics as "Not Started", "In Progress" or "Completed," and the app updates the progress bar in real-time.
+- Topics can be marked as "Not Started," "In Progress," or "Completed."
+- A progress bar visually reflects the learner’s milestones, keeping them motivated and on track.
 
 ### 4. **Social Collaboration**
 
-- Users can browse shared roadmaps, follow them, and access the attached resources.
+- Browse shared roadmaps, follow those created by others, and access their attached resources.
 - Example: A user can follow a roadmap for "Web Development" and access all the resources shared by the creator.
 
 ### 5. **Internet Resource Recommendations**
 
 - Eduverse uses web scraping to fetch relevant links from Bing based on the course or skill name.
 - Example: For a roadmap on "Data Science," Eduverse can recommend links to freeCodeCamp tutorials, Coursera courses, and Medium articles.
-- The recommendations are cached to enhance the application's performance and efficiency.
-- Upon the first request for AI recommendations, the app scrapes the data from the web and stores it in local storage. On subsequent requests or page refreshes, the cached results are retrieved, providing faster response times.
+- Recommendations are cached locally to improve performance. Subsequent requests retrieve cached data, ensuring faster response times and efficient use of resources.
 
 ### 6. **Curriculum Sharing for Universities**
 
 - Eduverse enables universities and educational institutions to create and share structured learning paths for their curriculum.
 - Institutions can attach updated resources, such as lecture notes, research papers, and video tutorials, to each module or topic.
 - This feature ensures that students always have access to the latest and most relevant materials and learning paths.
-
 
 ## Technology Stack
 
@@ -208,9 +205,9 @@ Eduverse addresses these challenges by providing a centralized platform where us
 - While creating or editing a roadmap, click on "Fetch Recommendations."
 - Eduverse will scrape Bing for relevant links and display them for you to add to your roadmap.
 
-Watch this video for a working demo.
+<!-- Watch this video for a working demo.
 
-<video src = "./assets/usage.mp4" controls width="75%"> <source ></video>
+<video src = "./assets/usage.mp4" controls width="75%"> <source ></video> -->
 
 ## Installation
 
